@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshay Bakshi | Full Portfolio & Profile</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Added Chart.js for High-Performance Ads Data -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <!-- Instagram Embed Script -->
+    <script async defer src="https://www.instagram.com/embed.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#050507', surface: '#121217', primary: '#FFFFFF', accent: '#FFD700', highlight: '#8A2BE2'
+                    },
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'], body: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                    },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050507; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FFD700; }
+        .glass-dark { background: rgba(20, 20, 25, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        /* 3D Flip Card Utilities */
+        .perspective-1000 { perspective: 1000px; }
+        .preserve-3d { transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        .flip-card:hover .preserve-3d { transform: rotateY(180deg); }
+        
+        .orbit-container { position: relative; width: 300px; height: 300px; margin: auto; }
+        @media (min-width: 768px) { .orbit-container { width: 500px; height: 500px; } }
+        
+        .markdown-content ul { list-style-type: disc; margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+        .markdown-content li { margin-bottom: 0.25rem; }
+        .markdown-content strong { color: #FFD700; font-weight: 700; }
+        .markdown-content p { margin-bottom: 0.75rem; }
+
+        /* --- ORBIT ANIMATIONS --- */
+        @keyframes orbit-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes orbit-counter-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        .orbit-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: orbit-rotate 30s linear infinite;
+        }
+        .orbit-track:hover { animation-play-state: paused; }
+
+        .orbit-item-wrapper { position: absolute; top: 50%; left: 50%; }
+
+        .orbit-image-container {
+            width: 80px; height: 80px; margin-top: -40px; margin-left: -40px;
+            background: #1a1a1a; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            transition: all 0.3s ease; box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            animation: orbit-counter-rotate 30s linear infinite; overflow: hidden; padding: 10px;
+        }
+        .orbit-track:hover .orbit-image-container { animation-play-state: paused; }
+        .orbit-image-container:hover { background: #000; border-color: #FFD700; transform: scale(1.2); box-shadow: 0 0 30px #FFD700; z-index: 50; }
+        @media (min-width: 768px) { .orbit-image-container { width: 100px; height: 100px; margin-top: -50px; margin-left: -50px; padding: 15px; } }
+
+        /* Showcase Carousel Styles */
+        .showcase-container {
+            position: relative; 
+            width: 100%; 
+            min-height: 250px; /* Fallback height just in case aspect ratio fails locally */
+            overflow: hidden; 
+            background: #0d0d0d;
+        }
+        .showcase-item {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; z-index: 0; transition: opacity 0.5s ease-in-out;
+            display: flex; align-items: center; justify-content: center;
+            pointer-events: none; overflow: hidden;
+        }
+        .showcase-item img, .showcase-item video {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .showcase-item.active { opacity: 1; z-index: 10; pointer-events: auto; }
+    </style>
+</head>
+<body class="bg-bg text-primary font-body overflow-x-hidden selection:bg-accent selection:text-black">
+
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 glass-dark">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="font-display font-bold text-xl text-white">Lakshay<span class="text-accent">.</span></span>
+            <a href="Lakshay_Royal_Home.html" class="text-sm font-bold text-gray-400 hover:text-white transition"><i class="fa-solid fa-arrow-left mr-2"></i> Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- HEADER / BIO -->
+    <header id="home" class="pt-32 pb-24 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+            
+            <!-- IMAGE CAROUSEL SECTION -->
+            <div>
+                <!-- Enforced 3:4 aspect ratio and contained width -->
+                <div class="relative w-full max-w-md mx-auto md:mx-0 aspect-[3/4] rounded-3xl border border-white/10 shadow-2xl overflow-hidden group bg-surface flex items-center justify-center" id="lakshay-carousel">
+                    <!-- The 7 images will be injected here via JavaScript -->
+                    <span class="text-gray-500 text-sm animate-pulse" id="carousel-loading">Loading Photos...</span>
+                </div>
+            </div>
+
+            <!-- TEXT & BIO -->
+            <div>
+                <span class="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Social Media Architect</span>
+                <div class="relative inline-block group cursor-pointer">
+                    <h1 class="font-display text-5xl font-bold mb-6 transition-all duration-500 group-hover:text-accent group-hover:drop-shadow-[0_0_25px_rgba(255,215,0,0.6)]">
+                        Lakshay <span class="text-white group-hover:text-accent transition-colors duration-500">Bakshi</span>
+                    </h1>
+                    <div class="absolute bottom-full left-0 mb-4 px-6 py-2 bg-white/5 backdrop-blur-xl border border-accent/30 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 pointer-events-none whitespace-nowrap shadow-[0_0_20px_rgba(255,215,0,0.2)]">
+                        <span class="font-body text-xs font-light tracking-[0.2em] text-white uppercase">The only expert you need</span>
+                        <div class="absolute -bottom-1 left-8 w-2 h-2 bg-accent/30 rotate-45 border-r border-b border-accent/30"></div>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                    <p>I am a strategist who lives at the intersection of data and creativity. With a deep understanding of platform algorithms and human psychology, I don't just create content; I engineer viral moments.</p>
+                    <p>My journey began with a curiosity for digital communities and evolved into a career scaling brands from zero to millions of impressions. I believe every brand has a royal court waiting to be built—it just needs the right voice.</p>
+                </div>
+                <div class="mt-8 pt-8 border-t border-white/10">
+                    <h3 class="text-xs font-bold uppercase text-accent tracking-widest mb-4">Languages Spoken</h3>
+                    <div class="flex gap-4">
+                        <span class="flex items-center gap-2 bg-surface px-4 py-2 rounded-lg border border-white/10"><i class="fa-solid fa-language text-highlight"></i> English (Professional)</span>
+                        <span class="flex items-center gap-2 bg-surface px-4 py-2 rounded-lg border border-white/10"><i class="fa-solid fa-om text-highlight"></i> Hindi (Native)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: THE ARSENAL -->
+    <section id="arsenal" class="py-12 bg-surface relative border-t border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-display text-4xl font-bold mb-4">The <span class="text-highlight">Arsenal</span></h2>
+            <p class="text-gray-400 max-w-xl mx-auto mb-10">The premium tools I deploy to craft, manage, and scale your digital presence.</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-8 justify-items-center perspective-1000 max-w-5xl mx-auto px-4">
+                
+                <!-- Meta -->
+                <div class="flip-card animate-float w-40 h-40 md:w-48 md:h-48 cursor-pointer perspective-1000">
+                    <div class="relative w-full h-full preserve-3d">
+                        <!-- Front of Card -->
+                        <div class="absolute inset-0 backface-hidden bg-bg border border-white/10 rounded-3xl flex items-center justify-center p-6 md:p-8 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                            <img src="the.arsenal.imgs/Meta.logo.webp" alt="Meta" class="w-full h-full object-contain">
+                        </div>
+                        <!-- Back of Card -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-surface border border-blue-500/50 rounded-3xl p-4 md:p-5 flex flex-col items-center justify-center text-center shadow-[0_0_30px_rgba(59,130,246,0.4)]">
+                            <span class="text-blue-400 font-display font-bold text-sm mb-2 uppercase tracking-wider">Meta</span>
+                            <p class="text-[10px] md:text-xs text-gray-300 leading-snug font-body">Schedules content, tracks performance, manages ads, and optimizes growth with real-time insights.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canva -->
+                <div class="flip-card animate-float-delayed w-40 h-40 md:w-48 md:h-48 cursor-pointer perspective-1000">
+                    <div class="relative w-full h-full preserve-3d">
+                        <!-- Front -->
+                        <div class="absolute inset-0 backface-hidden bg-bg border border-white/10 rounded-3xl flex items-center justify-center p-6 md:p-8 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                            <img src="the.arsenal.imgs/Canva.logo.webp" alt="Canva" class="w-full h-full object-contain">
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-surface border border-cyan-400/50 rounded-3xl p-4 md:p-5 flex flex-col items-center justify-center text-center shadow-[0_0_30px_rgba(34,211,238,0.4)]">
+                            <span class="text-cyan-400 font-display font-bold text-sm mb-2 uppercase tracking-wider">Canva</span>
+                            <p class="text-[10px] md:text-xs text-gray-300 leading-snug font-body">Crafts visually stunning carousels, thumbnails, and brand assets that stop the scroll.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gemini -->
+                <div class="flip-card animate-float w-40 h-40 md:w-48 md:h-48 cursor-pointer perspective-1000">
+                    <div class="relative w-full h-full preserve-3d">
+                        <!-- Front -->
+                        <div class="absolute inset-0 backface-hidden bg-bg border border-white/10 rounded-3xl flex items-center justify-center p-6 md:p-8 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini" class="w-full h-full object-contain">
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-surface border border-blue-400/50 rounded-3xl p-4 md:p-5 flex flex-col items-center justify-center text-center shadow-[0_0_30px_rgba(96,165,250,0.4)]">
+                            <span class="text-blue-400 font-display font-bold text-sm mb-2 uppercase tracking-wider">Gemini</span>
+                            <p class="text-[10px] md:text-xs text-gray-300 leading-snug font-body">Analytical co-pilot processing datasets to uncover viral trends and generate content angles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CapCut -->
+                <div class="flip-card animate-float-delayed w-40 h-40 md:w-48 md:h-48 cursor-pointer perspective-1000">
+                    <div class="relative w-full h-full preserve-3d">
+                        <!-- Front -->
+                        <div class="absolute inset-0 backface-hidden bg-bg border border-white/10 rounded-3xl flex items-center justify-center p-6 md:p-8 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                            <img src="the.arsenal.imgs/Capcut.logo.webp" alt="CapCut" class="w-full h-full object-contain">
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-surface border border-white/50 rounded-3xl p-4 md:p-5 flex flex-col items-center justify-center text-center shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+                            <span class="text-white font-display font-bold text-sm mb-2 uppercase tracking-wider">CapCut</span>
+                            <p class="text-[10px] md:text-xs text-gray-300 leading-snug font-body">Engine for high-retention editing, snappy cuts, trending effects, and dynamic captions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ChatGPT -->
+                <div class="flip-card animate-float w-40 h-40 md:w-48 md:h-48 cursor-pointer perspective-1000">
+                    <div class="relative w-full h-full preserve-3d">
+                        <!-- Front -->
+                        <div class="absolute inset-0 backface-hidden bg-bg border border-white/10 rounded-3xl flex items-center justify-center p-6 md:p-8 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                            <img src="the.arsenal.imgs/Chatgpt.logo.webp" alt="ChatGPT" class="w-full h-full object-contain">
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-surface border border-green-400/50 rounded-3xl p-4 md:p-5 flex flex-col items-center justify-center text-center shadow-[0_0_30px_rgba(116,170,156,0.4)]">
+                            <span class="text-green-400 font-display font-bold text-sm mb-2 uppercase tracking-wider">ChatGPT</span>
+                            <p class="text-[10px] md:text-xs text-gray-300 leading-snug font-body">Scripting partner for refining brand voice, persuasive copy, and robust content pillars.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NotebookLM -->
+                <div class="flip-card animate-float-delayed w-40 h-40 md:w-48 md:h-48 cursor-pointer perspective-1000">
+                    <div class="relative w-full h-full preserve-3d">
+                        <!-- Front -->
+                        <div class="absolute inset-0 backface-hidden bg-bg border border-white/10 rounded-3xl flex items-center justify-center p-6 md:p-8 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                            <img src="the.arsenal.imgs/Notebook.logo.webp" alt="NotebookLM" class="w-full h-full object-contain">
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-surface border border-purple-400/50 rounded-3xl p-4 md:p-5 flex flex-col items-center justify-center text-center shadow-[0_0_30px_rgba(168,85,247,0.4)]">
+                            <span class="text-purple-400 font-display font-bold text-sm mb-2 uppercase tracking-wider">NotebookLM</span>
+                            <p class="text-[10px] md:text-xs text-gray-300 leading-snug font-body">Turns deep research into digestible insights for producing expert-level educational content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: SOFT SKILLS -->
+    <section id="soft-skills" class="py-24 bg-bg border-t border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-display text-3xl font-bold mb-4">Soft <span class="text-accent">Skills</span></h2>
+            <p class="text-gray-400 max-w-xl mx-auto mb-16">Mastering the tools is science. Mastering the people is art.</p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="animate-float px-8 py-4 rounded-full border border-white/10 bg-surface text-gray-300 shadow-[0_0_15px_rgba(255,215,0,0.1)] hover:shadow-[0_0_25px_rgba(255,215,0,0.3)] hover:border-accent hover:text-accent hover:scale-105 transition-all cursor-default text-lg tracking-wide"><i class="fa-solid fa-fire-extinguisher mr-2 text-highlight"></i> Crisis Management</div>
+                <div class="animate-float-delayed px-8 py-4 rounded-full border border-white/10 bg-surface text-gray-300 shadow-[0_0_15px_rgba(255,215,0,0.1)] hover:shadow-[0_0_25px_rgba(255,215,0,0.3)] hover:border-accent hover:text-accent hover:scale-105 transition-all cursor-default text-lg tracking-wide"><i class="fa-solid fa-lightbulb mr-2 text-highlight"></i> Creative Direction</div>
+                <div class="animate-float px-8 py-4 rounded-full border border-white/10 bg-surface text-gray-300 shadow-[0_0_15px_rgba(255,215,0,0.1)] hover:shadow-[0_0_25px_rgba(255,215,0,0.3)] hover:border-accent hover:text-accent hover:scale-105 transition-all cursor-default text-lg tracking-wide"><i class="fa-solid fa-arrow-trend-up mr-2 text-highlight"></i> Trend Forecasting</div>
+                <div class="animate-float-delayed px-8 py-4 rounded-full border border-white/10 bg-surface text-gray-300 shadow-[0_0_15px_rgba(255,215,0,0.1)] hover:shadow-[0_0_25px_rgba(255,215,0,0.3)] hover:border-accent hover:text-accent hover:scale-105 transition-all cursor-default text-lg tracking-wide"><i class="fa-solid fa-users mr-2 text-highlight"></i> Community Building</div>
+                <div class="animate-float px-8 py-4 rounded-full border border-white/10 bg-surface text-gray-300 shadow-[0_0_15px_rgba(255,215,0,0.1)] hover:shadow-[0_0_25px_rgba(255,215,0,0.3)] hover:border-accent hover:text-accent hover:scale-105 transition-all cursor-default text-lg tracking-wide"><i class="fa-solid fa-chart-pie mr-2 text-highlight"></i> Data Storytelling</div>
+                <div class="animate-float-delayed px-8 py-4 rounded-full border border-white/10 bg-surface text-gray-300 shadow-[0_0_15px_rgba(255,215,0,0.1)] hover:shadow-[0_0_25px_rgba(255,215,0,0.3)] hover:border-accent hover:text-accent hover:scale-105 transition-all cursor-default text-lg tracking-wide"><i class="fa-solid fa-bolt mr-2 text-highlight"></i> Agile Adaptation</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: THE AI LAB -->
+    <section class="py-24 bg-surface border-t border-white/5 relative overflow-hidden" id="ai-lab">
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/5 via-bg to-bg pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-accent text-sm font-bold tracking-widest uppercase mb-2 block">Live Demo</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-white">The <span class="text-highlight">AI Lab</span></h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Experience how I leverage Gemini to brainstorm viral hooks in seconds.</p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-bg border border-white/10 rounded-2xl p-8 shadow-2xl relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-accent/5 to-highlight/5 rounded-2xl pointer-events-none"></div>
+                <div class="relative z-10">
+                    <label class="block text-gray-400 text-sm font-bold mb-2 uppercase tracking-wide">Enter a Niche or Topic</label>
+                    <div class="flex gap-4 mb-6">
+                        <input type="text" id="aiInput" placeholder="e.g., Sustainable Fashion, Crypto Trading, Vegan Food..." class="w-full bg-surface border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-600">
+                        <button onclick="generateHooks()" id="aiBtn" class="bg-gradient-to-r from-accent to-yellow-600 text-black font-bold px-6 py-3 rounded-xl hover:scale-105 transition-transform flex items-center gap-2 whitespace-nowrap shadow-lg shadow-accent/20">Generate ✨</button>
+                    </div>
+                    <div id="aiResult" class="hidden space-y-4 animate-[fadeIn_0.5s_ease-out]">
+                        <div class="h-px w-full bg-white/10 my-4"></div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-highlight font-bold text-lg"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Lakshay's AI Draft:</h4>
+                            <span class="text-xs text-gray-500">Powered by Gemini</span>
+                        </div>
+                        <div id="aiOutput" class="text-gray-300 space-y-2 font-mono text-sm leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 markdown-content"></div>
+                    </div>
+                    <div id="aiLoading" class="hidden text-center py-8">
+                        <i class="fa-solid fa-circle-notch fa-spin text-accent text-3xl mb-3"></i>
+                        <p class="text-gray-400 text-sm font-mono">Consulting the algorithm...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRANDS ORBIT -->
+    <section class="py-24 bg-surface overflow-hidden relative border-t border-white/5" id="brands-orbit-section">
+        <div class="container mx-auto px-6">
+             <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white">Brands I've <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight">Empowered</span></h2>
+            </div>
+            <div class="relative h-[500px] flex items-center justify-center">
+                <div class="orbit-container">
+                     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-0">
+                        <h3 class="font-display text-2xl font-bold text-white">Select<br><span class="text-accent">Clients</span></h3>
+                        <p class="text-xs text-gray-500 mt-2">Click icons for details</p>
+                    </div>
+                    <div class="orbit-track" id="brands-track"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: PERFORMANCE MARKETING (ADS) -->
+    <section class="py-24 bg-bg border-t border-white/5 relative overflow-hidden" id="performance-ads">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-red-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-highlight text-sm font-bold tracking-widest uppercase mb-2 block">Media Buying & Strategy</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white">Performance <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-red-400">Marketing</span></h2>
+                <p class="text-gray-400 max-w-xl mx-auto mt-4">Scaling brands predictably through data-driven paid acquisition.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Meta Ads Box -->
+                <div onclick="openAdModal('meta')" class="group relative bg-surface border border-white/10 rounded-3xl p-8 cursor-pointer hover:border-blue-500/50 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)] transition-all duration-500 overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
+                        <i class="fa-brands fa-meta text-[10rem] text-blue-500 -mt-10 -mr-10"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-3xl text-blue-500 mb-6 group-hover:scale-110 transition-transform duration-500">
+                            <i class="fa-brands fa-meta"></i>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Meta Ads</h3>
+                        <p class="text-gray-400 font-mono text-sm mb-6 border-b border-white/10 pb-6">Facebook & Instagram Ecosystem</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block mb-1">Total Spend managed</span>
+                                <span class="text-xl font-bold text-white">₹500k+</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block mb-1">Avg. Return (ROAS)</span>
+                                <span class="text-xl font-bold text-blue-400">4.5x</span>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center text-sm font-bold text-blue-400 group-hover:text-white transition-colors">View Detailed Breakdown <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i></span>
+                    </div>
+                </div>
+
+                <!-- Google Ads Box -->
+                <div onclick="openAdModal('google')" class="group relative bg-surface border border-white/10 rounded-3xl p-8 cursor-pointer hover:border-red-500/50 hover:shadow-[0_0_40px_rgba(239,68,68,0.15)] transition-all duration-500 overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
+                        <i class="fa-brands fa-google text-[10rem] text-red-500 -mt-10 -mr-10"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-3xl text-red-500 mb-6 group-hover:scale-110 transition-transform duration-500">
+                            <i class="fa-brands fa-google"></i>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Google Ads</h3>
+                        <p class="text-gray-400 font-mono text-sm mb-6 border-b border-white/10 pb-6">PPC, Display & YouTube</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block mb-1">Total Spend managed</span>
+                                <span class="text-xl font-bold text-white">₹10k+</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block mb-1">Cost Per Lead</span>
+                                <span class="text-xl font-bold text-red-400">-25%</span>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center text-sm font-bold text-red-400 group-hover:text-white transition-colors">View Detailed Breakdown <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/10 text-center bg-bg">
+        <a href="mailto:lakshaybakshi566@gmail.com" class="text-2xl font-bold hover:text-accent transition">Let's Create Together <i class="fa-solid fa-arrow-right ml-2"></i></a>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="brandModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeModal()"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-[95vh] md:h-[90vh] overflow-y-auto bg-surface border border-white/10 rounded-3xl p-6 md:p-10 shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-2xl z-50"><i class="fa-solid fa-xmark"></i></button>
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Left: Header -->
+                <div class="w-full md:w-1/4">
+                    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center p-2 mb-4 mx-auto md:mx-0 overflow-hidden" id="modalIconContainer">
+                        <img src="" alt="Brand Logo" id="modalIcon" class="w-full h-full object-contain">
+                    </div>
+                    <h2 class="font-display text-3xl font-bold mb-1 text-white" id="modalTitle">Brand</h2>
+                    <span class="text-highlight text-xs font-bold uppercase tracking-widest block mb-4" id="modalIndustry">Industry</span>
+                    <div class="flex gap-3 mb-6" id="modalSocials"></div>
+                    <div class="bg-bg border border-accent/20 rounded-xl p-4">
+                        <h4 class="text-accent text-[10px] font-bold uppercase mb-3 border-b border-white/10 pb-2">Key Performance</h4>
+                        <div class="grid grid-cols-1 gap-3" id="modalMetrics"></div>
+                    </div>
+                </div>
+                
+                <!-- Right: Content -->
+                <div class="w-full md:w-3/4 border-l border-white/10 pl-0 md:pl-8 space-y-8">
+                    <!-- Before/After -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-red-900/10 border border-red-500/20 p-4 rounded-xl"><span class="text-red-400 text-[10px] font-bold uppercase block mb-1">Before</span><p class="text-gray-300 text-sm leading-snug" id="modalBefore">...</p></div>
+                        <div class="bg-green-900/10 border border-green-500/20 p-4 rounded-xl"><span class="text-green-400 text-[10px] font-bold uppercase block mb-1">After</span><p class="text-gray-300 text-sm leading-snug" id="modalAfter">...</p></div>
+                    </div>
+                    <!-- Framework -->
+                    <div><h4 class="text-gray-500 text-xs font-bold uppercase mb-2 flex items-center gap-2"><i class="fa-solid fa-chess-knight text-accent"></i> Strategy Framework</h4><p class="text-white font-display text-lg italic border-l-2 border-accent pl-4" id="modalFramework">...</p></div>
+                    
+                    <!-- Challenge & Solution -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-gray-500 text-xs font-bold uppercase mb-2">The Challenge</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed" id="modalChallenge">...</p>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-500 text-xs font-bold uppercase mb-2">My Solution</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed" id="modalSolution">...</p>
+                        </div>
+                    </div>
+
+                    <!-- Content Mix -->
+                    <div>
+                        <h4 class="text-gray-500 text-xs font-bold uppercase mb-3">Content Mix Breakdown</h4>
+                        <div class="flex gap-1 h-2 rounded-full overflow-hidden mb-2" id="modalContentBar"></div>
+                        <div class="flex justify-between text-[10px] text-gray-400 uppercase tracking-wider" id="modalContentLegend"></div>
+                    </div>
+
+                    <!-- BEST PERFORMING CONTENT SHOWCASE -->
+                    <div class="border-t border-white/10 pt-8 mt-8 hidden" id="contentShowcaseSection">
+                        <h4 class="text-accent text-lg font-display font-bold mb-6">Best Performing Content</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            
+                            <!-- Posts Column (3:4 Ratio) -->
+                            <div class="showcase-col" id="showcasePostsContainer">
+                                <h5 class="text-gray-400 text-xs font-bold uppercase mb-3 flex items-center gap-2"><i class="fa-solid fa-image"></i> Posts</h5>
+                                <div class="showcase-container rounded-xl border border-white/10 aspect-[3/4]" id="postsCarousel"></div>
+                                <div class="text-center mt-2"><span class="text-xs text-gray-500">Auto-Scroll on Hover</span></div>
+                            </div>
+
+                            <!-- Reels Column (9:16 Ratio) -->
+                            <div class="showcase-col" id="showcaseReelsContainer">
+                                <h5 class="text-gray-400 text-xs font-bold uppercase mb-3 flex items-center gap-2"><i class="fa-solid fa-film"></i> Reels</h5>
+                                <div class="showcase-container rounded-xl border border-white/10 aspect-[9/16]" id="reelsCarousel"></div>
+                                <div class="text-center mt-2"><span class="text-xs text-gray-500">Auto-Play on Hover</span></div>
+                            </div>
+
+                            <!-- Stories Column (9:16 Ratio) -->
+                            <div class="showcase-col" id="showcaseStoriesContainer">
+                                <h5 class="text-gray-400 text-xs font-bold uppercase mb-3 flex items-center gap-2"><i class="fa-solid fa-circle-notch"></i> Stories</h5>
+                                <div class="showcase-container rounded-xl border border-white/10 aspect-[9/16]" id="storiesCarousel"></div>
+                                <div class="text-center mt-2"><span class="text-xs text-gray-500">Auto-Scroll on Hover</span></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PERFORMANCE ADS MODAL (Hidden by default) -->
+    <div id="adModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeAdModal()"></div>
+        <!-- FIXED: Replaced md:h-auto with md:h-[85vh] to keep dimensions constrained and enable internal scrolling -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[95vh] md:h-[85vh] overflow-y-auto bg-surface border border-white/10 rounded-3xl p-6 md:p-10 shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="adModalContent">
+            <button onclick="closeAdModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-2xl z-50"><i class="fa-solid fa-xmark"></i></button>
+            
+            <!-- COMING SOON OVERLAY (Specifically for Google Ads) -->
+            <div id="comingSoonOverlay" class="hidden absolute inset-0 z-40 bg-black/60 backdrop-blur-xl flex flex-col items-center justify-center rounded-3xl">
+                <h3 class="font-display text-4xl md:text-6xl font-bold text-white tracking-[0.2em] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">COMING SOON</h3>
+                <p class="text-gray-400 mt-4 font-mono text-sm tracking-widest uppercase">Performance breakdown compiling</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Left Column: Branding & Stats (Made sticky to stay visible while scrolling the graphs) -->
+                <div class="w-full md:w-1/3 md:sticky md:top-0 h-fit pb-4 bg-surface md:bg-transparent z-10">
+                    <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-5xl mb-6" id="adModalIconContainer">
+                        <i class="" id="adModalIcon"></i>
+                    </div>
+                    <h2 class="font-display text-4xl font-bold mb-2 text-white" id="adModalTitle">Platform</h2>
+                    <span class="text-gray-400 font-mono text-sm block mb-8 border-b border-white/10 pb-6" id="adModalSubtitle">Subtitle</span>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-bg p-4 rounded-xl border border-white/5">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Total Budget Managed</span>
+                            <span class="text-2xl font-bold text-white" id="adModalSpend">...</span>
+                        </div>
+                        <div class="bg-bg p-4 rounded-xl border border-white/5" id="adModalHighlightBox">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1" id="adModalHighlightLabel">Highlight</span>
+                            <span class="text-2xl font-bold" id="adModalHighlightValue">...</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Details -->
+                <div class="w-full md:w-2/3 border-l-0 md:border-l border-white/10 pt-6 md:pt-0 md:pl-8 space-y-8">
+                    
+                    <!-- Ad Types -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase text-gray-500 mb-3 flex items-center gap-2"><i class="fa-solid fa-layer-group text-highlight"></i> Types of Ads Run</h4>
+                        <div class="flex flex-wrap gap-2" id="adModalTypes">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Clients -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase text-gray-500 mb-3 flex items-center gap-2"><i class="fa-solid fa-users text-highlight"></i> Major Clients Handled</h4>
+                        <p class="text-white font-display text-lg italic border-l-2 border-accent pl-4" id="adModalClients">...</p>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="bg-gradient-to-br from-white/5 to-transparent p-6 rounded-2xl border border-white/10">
+                        <h4 class="text-sm font-bold uppercase mb-4 text-white">Key Achievements & Impact</h4>
+                        <ul class="space-y-4" id="adModalAchievements">
+                            <!-- Injected by JS -->
+                        </ul>
+
+                        <!-- NEW: High-Performance Ads Dashboard (Dynamic Injection for Meta) -->
+                        <div id="metaAdsDashboard" class="hidden mt-8 pt-8 border-t border-white/10">
+                            <h4 class="text-accent text-lg font-display font-bold mb-4"><i class="fa-solid fa-chart-simple mr-2"></i> High-Performance Ads Data</h4>
+                            
+                            <!-- Filters & Toggles -->
+                            <div class="flex flex-col xl:flex-row justify-between gap-4 mb-6">
+                                <!-- Metric Toggles -->
+                                <div class="flex flex-wrap gap-2 bg-black/40 p-1.5 rounded-xl border border-white/5 shadow-inner" id="metaMetricToggles">
+                                    <button class="meta-metric-btn active px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg bg-blue-600 text-white shadow-md transition-all" data-metric="spent_results">Spent vs Results</button>
+                                    <button class="meta-metric-btn px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg text-gray-400 hover:text-white transition-all" data-metric="ctr">CTR</button>
+                                    <button class="meta-metric-btn px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg text-gray-400 hover:text-white transition-all" data-metric="cpc">CPC</button>
+                                    <button class="meta-metric-btn px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg text-gray-400 hover:text-white transition-all" data-metric="cpm">CPM</button>
+                                    <button class="meta-metric-btn px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg text-gray-400 hover:text-white transition-all" data-metric="cpa">Cost / Result</button>
+                                </div>
+                                <!-- Campaign Type Filters -->
+                                <div class="flex flex-wrap gap-2 bg-black/40 p-1.5 rounded-xl border border-white/5 shadow-inner" id="metaTypeFilters">
+                                    <button class="meta-filter-btn active px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg bg-white/20 text-white shadow-md transition-all" data-filter="All">All Types</button>
+                                    <button class="meta-filter-btn px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg text-gray-400 hover:text-white transition-all" data-filter="Lead Gen">Lead Gen</button>
+                                    <button class="meta-filter-btn px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg text-gray-400 hover:text-white transition-all" data-filter="Messaging">Messaging</button>
+                                    <button class="meta-filter-btn px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg text-gray-400 hover:text-white transition-all" data-filter="Link Clicks">Link Clicks</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Chart Canvas Container -->
+                            <div class="w-full h-72 md:h-80 relative bg-black/30 rounded-xl border border-white/5 p-4 shadow-lg">
+                                <canvas id="metaPerformanceChart"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING DOCK -->
+    <div id="floating-dock-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 touch-none cursor-grab active:cursor-grabbing">
+        <div class="glass-dark px-2 py-2 rounded-2xl flex items-center gap-1 md:gap-2 scale-90 md:scale-100 origin-bottom shadow-[0_10px_30px_rgba(0,0,0,0.8)] overflow-x-auto max-w-[95vw]">
+            <!-- Drag Handle -->
+            <div class="px-2 text-gray-500 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-grip-vertical"></i>
+            </div>
+            <div class="w-px h-6 bg-white/10 mx-1 flex-shrink-0"></div>
+            
+            <!-- Nav Buttons -->
+            <button onclick="scrollToSection('home')" title="Home" class="flex-shrink-0 nav-item w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-gray-400 hover:text-accent transition-all duration-300"><i class="fa-solid fa-castle"></i></button>
+            <button onclick="scrollToSection('arsenal')" title="The Arsenal" class="flex-shrink-0 nav-item w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-gray-400 hover:text-accent transition-all duration-300"><i class="fa-solid fa-toolbox"></i></button>
+            <button onclick="scrollToSection('soft-skills')" title="Soft Skills" class="flex-shrink-0 nav-item w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-gray-400 hover:text-accent transition-all duration-300"><i class="fa-solid fa-brain"></i></button>
+            <button onclick="scrollToSection('ai-lab')" title="AI Lab" class="flex-shrink-0 nav-item w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-gray-400 hover:text-highlight transition-all duration-300"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+            <button onclick="scrollToSection('brands-orbit-section')" title="Brands" class="flex-shrink-0 nav-item w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-gray-400 hover:text-accent transition-all duration-300"><i class="fa-solid fa-users"></i></button>
+            <button onclick="scrollToSection('performance-ads')" title="Ads Performance" class="flex-shrink-0 nav-item w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-gray-400 hover:text-accent transition-all duration-300"><i class="fa-solid fa-chart-line"></i></button>
+            
+            <a href="https://wa.me/919821314899" target="_blank" class="flex-shrink-0 nav-item px-4 md:px-6 h-10 flex items-center justify-center rounded-xl bg-accent text-black hover:bg-white hover:scale-105 transition-all duration-300 font-bold text-xs md:text-sm shadow-lg whitespace-nowrap">Hire Me</a>
+        </div>
+    </div>
+
+    <script>
+        // --- DRAGGABLE DOCK LOGIC ---
+        const dock = document.getElementById('floating-dock-container');
+        let isDragging = false;
+        let startX, startY, initialLeft, initialTop;
+
+        dock.addEventListener('mousedown', startDrag);
+        dock.addEventListener('touchstart', startDrag, {passive: false});
+
+        function startDrag(e) {
+            // Prevent drag when clicking buttons/links inside the dock
+            if (e.target.closest('button') || e.target.closest('a')) return;
+            
+            isDragging = true;
+            const rect = dock.getBoundingClientRect();
+            
+            // Switch from Tailwind center-positioning to absolute pixels to avoid drag conflicts
+            if(dock.classList.contains('bottom-6')) {
+                dock.classList.remove('bottom-6', 'left-1/2', '-translate-x-1/2');
+                dock.style.left = rect.left + 'px';
+                dock.style.top = rect.top + 'px';
+            }
+
+            if (e.type === 'touchstart') {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            } else {
+                startX = e.clientX;
+                startY = e.clientY;
+            }
+
+            initialLeft = parseFloat(dock.style.left) || rect.left;
+            initialTop = parseFloat(dock.style.top) || rect.top;
+
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('touchmove', onDrag, {passive: false});
+            document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchend', stopDrag);
+        }
+
+        function onDrag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            let currentX, currentY;
+            if (e.type === 'touchmove') {
+                currentX = e.touches[0].clientX;
+                currentY = e.touches[0].clientY;
+            } else {
+                currentX = e.clientX;
+                currentY = e.clientY;
+            }
+
+            const dx = currentX - startX;
+            const dy = currentY - startY;
+
+            dock.style.left = `${initialLeft + dx}px`;
+            dock.style.top = `${initialTop + dy}px`;
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('touchmove', onDrag);
+            document.removeEventListener('mouseup', stopDrag);
+            document.removeEventListener('touchend', stopDrag);
+        }
+
+        // --- SMOOTH SCROLL ---
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Generating File Paths for RK Content
+        // FIXED: Removed "Portfolio Files/" prefix. The HTML file is already in that folder!
+        const rkPosts = Array.from({length: 15}, (_, i) => `Rk Content/Rk.post.${String(i + 1).padStart(2, '0')}.webp`);
+        const rkReels = Array.from({length: 5}, (_, i) => `Rk Content/Rk.Reel.${String(i + 1).padStart(2, '0')}.mp4`);
+        const rkStories = Array.from({length: 2}, (_, i) => `Rk Content/RK.story.${String(i + 1).padStart(2, '0')}.jpg`);
+
+        // Generating File Paths for Delta 105 Content
+        const deltaPosts = Array.from({length: 15}, (_, i) => `Delta105 Content/Delta105.post.${String(i + 1).padStart(2, '0')}.webp`);
+        const deltaReels = Array.from({length: 4}, (_, i) => `Delta105 Content/Delta105.reel.${String(i + 1).padStart(2, '0')}.mp4`);
+        const deltaStories = Array.from({length: 10}, (_, i) => `Delta105 Content/Delta105.story.${String(i + 1).padStart(2, '0')}.webp`);
+
+        // Generating File Paths for Farm Aravalia
+        const faPosts = Array.from({length: 15}, (_, i) => `FA Content/FA.post.${String(i + 1).padStart(2, '0')}.webp`);
+        const faReels = Array.from({length: 4}, (_, i) => `FA Content/FA.reel.${String(i + 1).padStart(2, '0')}.mp4`);
+        const faStories = Array.from({length: 10}, (_, i) => `FA Content/FA.story.${String(i + 1).padStart(2, '0')}.webp`);
+
+        // Generating File Paths for Ganghar
+        const gangharPosts = Array.from({length: 15}, (_, i) => `Ganghar Content/ganghar.post.${String(i + 1).padStart(2, '0')}.webp`);
+        const gangharReels = Array.from({length: 4}, (_, i) => `Ganghar Content/ganghar.reel.${String(i + 1).padStart(2, '0')}.mp4`);
+        const gangharStories = Array.from({length: 10}, (_, i) => `Ganghar Content/ganghar.story.${String(i + 1).padStart(2, '0')}.webp`);
+
+        // Generating File Paths for Patanjali Wellness
+        const pwPosts = Array.from({length: 15}, (_, i) => `PW Content/PW.post.${String(i + 1).padStart(2, '0')}.webp`);
+        const pwReels = Array.from({length: 4}, (_, i) => `PW Content/PW.reel.${String(i + 1).padStart(2, '0')}.mp4`);
+        const pwStories = Array.from({length: 10}, (_, i) => `PW Content/PW.story.${String(i + 1).padStart(2, '0')}.webp`);
+
+        // Generating File Paths for SRNCC
+        const srnccPosts = Array.from({length: 15}, (_, i) => `SRNCC Content/SRNCC.post.${String(i + 1).padStart(2, '0')}.webp`);
+        const srnccReels = Array.from({length: 4}, (_, i) => `SRNCC Content/SRNCC.reel.${String(i + 1).padStart(2, '0')}.mp4`);
+        const srnccStories = Array.from({length: 10}, (_, i) => `SRNCC Content/SRNCC.story.${String(i + 1).padStart(2, '0')}.webp`);
+
+        const brands = [
+            { 
+                id: 1, name: 'Delta 105', icon: 'Logos/Delta.png', industry: 'Adventure Park', 
+                challenge: 'Low weekend footfall despite unique offering. Social presence was static brochures.',
+                solution: 'Shifted focus to "Experience First". Used action-packed reels and family UGC to show real joy.',
+                beforeAfter: { before: "Quiet weekends, static feed.", after: "Sold out slots, viral local reach." },
+                framework: "The 'Adrenaline' Funnel: Hook with Action -> Educate with Values -> Convert with Offers.",
+                contentBreakdown: [ { type: "Action Reels", pct: 60, color: "bg-red-500" }, { type: "UGC Stories", pct: 25, color: "bg-orange-400" }, { type: "Info Posts", pct: 15, color: "bg-gray-600" } ],
+                metrics: [ { label: "Footfall", value: "+40%" }, { label: "Viral Reach", value: "500k+" }, { label: "Ad ROAS", value: "4.2x" } ],
+                instagram: 'https://instagram.com/delta105', facebook: 'https://facebook.com/delta105',
+                contentShowcase: {
+                    posts: deltaPosts,
+                    reels: deltaReels,
+                    stories: deltaStories
+                }
+            },
+            { 
+                id: 2, name: 'Patanjali Wellness', icon: 'Logos/patanjali.png', industry: 'Wellness',
+                challenge: 'Struggling to connect ancient wisdom with a Gen-Z digital-first audience.',
+                solution: 'Created bite-sized "Ayurveda Hacks" and expert live sessions to demystify wellness.',
+                beforeAfter: { before: "Traditional, dated perception.", after: "Modern, approachable authority." },
+                framework: "Wisdom for Wellness: Simplify -> Relate -> Engage.",
+                contentBreakdown: [ { type: "Tips/Hacks", pct: 50, color: "bg-green-500" }, { type: "Live Sessions", pct: 30, color: "bg-emerald-600" }, { type: "Product", pct: 20, color: "bg-lime-400" } ],
+                metrics: [ { label: "Engagement", value: "+150%" }, { label: "Followers", value: "143K+" }, { label: "Saves", value: "5k+" } ],
+                instagram: 'https://instagram.com/patanjaliwellness', facebook: 'https://facebook.com/patanjaliwellness',
+                contentShowcase: {
+                    posts: pwPosts,
+                    reels: pwReels,
+                    stories: pwStories
+                }
+            },
+            { 
+                id: 3, name: 'Ganghar', icon: 'Logos/Gangar.png', industry: 'Fine Dining',
+                challenge: 'New market entrant needing immediate buzz to ensure a successful launch.',
+                solution: 'High-aesthetic ASMR food videography paired with exclusive influencer tasting events.',
+                beforeAfter: { before: "Unknown entity.", after: "The city's trending 'It' spot." },
+                framework: "Visual Taste: Eat with your eyes first.",
+                contentBreakdown: [ { type: "Food Reels", pct: 70, color: "bg-yellow-500" }, { type: "Ambience", pct: 20, color: "bg-amber-700" }, { type: "Behind Scenes", pct: 10, color: "bg-gray-500" } ],
+                metrics: [ { label: "Opening Wknd", value: "Sold Out" }, { label: "Avg Reach", value: "10k+" }, { label: "Reshares", value: "High" } ],
+                instagram: 'https://instagram.com/ganghar', facebook: 'https://facebook.com/ganghar',
+                contentShowcase: {
+                    posts: gangharPosts,
+                    reels: gangharReels,
+                    stories: gangharStories
+                }
+            },
+            { 
+                id: 4, name: 'Ranthambhore Kothi', icon: 'Logos/RK.png', industry: 'Luxury Resort',
+                challenge: 'Boosting occupancy during the competitive off-season months.',
+                solution: 'Developed "The Staycation Narrative", selling peace and nature rather than just rooms. Launched "Vanni in the Search of King of the Jungle" series showcasing flora & fauna.',
+                beforeAfter: { before: "Low seasonal occupancy.", after: "Consistent bookings year-round." },
+                framework: "Escapism Marketing: Transport the user before they book.",
+                contentBreakdown: [ { type: "Nature/Vibe", pct: 40, color: "bg-teal-600" }, { type: "Property Tour", pct: 40, color: "bg-cyan-600" }, { type: "Reviews", pct: 20, color: "bg-blue-400" } ],
+                metrics: [ { label: "Direct Bkgs", value: "+20%" }, { label: "Followers", value: "3K+" }, { label: "Inquiries", value: "2x" } ],
+                instagram: 'https://instagram.com/ranthambhorekothi', facebook: 'https://facebook.com/ranthambhorekothi',
+                contentShowcase: {
+                    posts: rkPosts,
+                    reels: rkReels,
+                    stories: rkStories
+                }
+            },
+            { 
+                id: 5, name: 'SRNCC', icon: 'Logos/SRNCC.png', industry: 'Sports Academy',
+                challenge: 'Wanted to build a community hub, not just a training ground.',
+                solution: 'Spotlighted student athletes with "Hero\'s Journey" content and match highlights.',
+                beforeAfter: { before: "Local academy.", after: "Regional Sports Community Hub." },
+                framework: "The Hero's Journey: Celebrate every win, small or big.",
+                contentBreakdown: [ { type: "Highlights", pct: 60, color: "bg-blue-600" }, { type: "Training", pct: 20, color: "bg-indigo-500" }, { type: "Updates", pct: 20, color: "bg-slate-500" } ],
+                metrics: [ { label: "Queries", value: "2x" }, { label: "Community", value: "Active" }, { label: "Brand Recall", value: "High" } ],
+                instagram: 'https://instagram.com/srncc', facebook: 'https://facebook.com/srncc',
+                contentShowcase: {
+                    posts: srnccPosts,
+                    reels: srnccReels,
+                    stories: srnccStories
+                }
+            },
+            { 
+                id: 6, name: 'Farm Aravalia', icon: 'Logos/Aravalia.png', industry: 'Event Venue',
+                challenge: 'Need to showcase versatility for weddings and corporate events simultaneously.',
+                solution: 'Mood-based visual storytelling focusing on "Dreamscape" aesthetics for different event types.',
+                beforeAfter: { before: "Just a venue option.", after: "Premier Wedding Destination." },
+                framework: "Dreamscape Strategy: Sell the memory, not the space.",
+                contentBreakdown: [ { type: "Event Recaps", pct: 50, color: "bg-pink-500" }, { type: "Scenic Shots", pct: 30, color: "bg-rose-400" }, { type: "Testimonials", pct: 20, color: "bg-fuchsia-600" } ],
+                metrics: [ { label: "Lead Gen", value: "+35%" }, { label: "Blog Feats", value: "Top 5" }, { label: "Conv. Rate", value: "High" } ],
+                instagram: 'https://instagram.com/farmaravalia', facebook: 'https://facebook.com/farmaravalia',
+                contentShowcase: {
+                    posts: faPosts,
+                    reels: faReels,
+                    stories: faStories
+                }
+            }
+        ];
+
+        const orbitTrack = document.getElementById('brands-track');
+        let currentCarouselIntervals = [];
+
+        function positionBrands() {
+            orbitTrack.innerHTML = ''; 
+            const r = window.innerWidth > 768 ? 200 : 120;
+            const total = brands.length;
+            
+            brands.forEach((brand, index) => {
+                const angle = (index / total) * 2 * Math.PI;
+                const x = Math.cos(angle) * r;
+                const y = Math.sin(angle) * r;
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'orbit-item-wrapper';
+                wrapper.style.transform = `translate(${x}px, ${y}px)`;
+                
+                const container = document.createElement('div');
+                container.className = 'orbit-image-container';
+                container.innerHTML = `<img src="${brand.icon}" alt="${brand.name}" class="w-full h-full object-contain p-2 rounded-full bg-white">`;
+                container.onclick = () => openModal(brand);
+                
+                wrapper.appendChild(container);
+                orbitTrack.appendChild(wrapper);
+            });
+        }
+        
+        window.addEventListener('resize', positionBrands);
+        setTimeout(positionBrands, 100);
+
+        // --- MODAL LOGIC ---
+        const modal = document.getElementById('brandModal');
+        const modalContent = document.getElementById('modalContent');
+
+        function openModal(brand) {
+            // Text & Images
+            document.getElementById('modalTitle').innerText = brand.name;
+            document.getElementById('modalIndustry').innerText = brand.industry;
+            document.getElementById('modalIcon').src = brand.icon;
+            document.getElementById('modalChallenge').innerText = brand.challenge;
+            document.getElementById('modalSolution').innerText = brand.solution;
+            document.getElementById('modalBefore').innerText = brand.beforeAfter.before;
+            document.getElementById('modalAfter').innerText = brand.beforeAfter.after;
+            document.getElementById('modalFramework').innerText = brand.framework;
+
+            // Metrics
+            const metricsContainer = document.getElementById('modalMetrics');
+            metricsContainer.innerHTML = '';
+            brand.metrics.forEach(m => {
+                metricsContainer.innerHTML += `
+                    <div class="flex justify-between items-center border-b border-white/5 pb-1 last:border-0">
+                        <span class="text-gray-400 text-xs">${m.label}</span>
+                        <span class="text-white font-bold text-sm">${m.value}</span>
+                    </div>`;
+            });
+
+            // Content Breakdown
+            const barContainer = document.getElementById('modalContentBar');
+            const legendContainer = document.getElementById('modalContentLegend');
+            barContainer.innerHTML = '';
+            legendContainer.innerHTML = '';
+            
+            brand.contentBreakdown.forEach(item => {
+                const segment = document.createElement('div');
+                segment.className = `h-full ${item.color}`;
+                segment.style.width = `${item.pct}%`;
+                barContainer.appendChild(segment);
+                
+                const leg = document.createElement('div');
+                leg.innerHTML = `<span class="w-2 h-2 inline-block rounded-full ${item.color} mr-1"></span>${item.type} (${item.pct}%)`;
+                legendContainer.appendChild(leg);
+            });
+
+            // Social Icons
+            const socialContainer = document.getElementById('modalSocials');
+            socialContainer.innerHTML = '';
+            if(brand.instagram) {
+                socialContainer.innerHTML += `<a href="${brand.instagram}" target="_blank" class="w-8 h-8 rounded-full bg-surface border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gradient-to-tr hover:from-purple-500 hover:to-pink-500 transition-all"><i class="fa-brands fa-instagram"></i></a>`;
+            }
+            if(brand.facebook) {
+                socialContainer.innerHTML += `<a href="${brand.facebook}" target="_blank" class="w-8 h-8 rounded-full bg-surface border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-600 transition-all"><i class="fa-brands fa-facebook-f"></i></a>`;
+            }
+
+            // NEW: Content Showcase Logic
+            const showcaseSection = document.getElementById('contentShowcaseSection');
+            
+            // Only show if specific content exists
+            if(brand.contentShowcase) {
+                showcaseSection.classList.remove('hidden');
+                setupCarousel('postsCarousel', brand.contentShowcase.posts, 'post');
+                setupCarousel('reelsCarousel', brand.contentShowcase.reels, 'reel');
+                setupCarousel('storiesCarousel', brand.contentShowcase.stories, 'story'); // Empty for now
+            } else {
+                showcaseSection.classList.add('hidden');
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                // Clear intervals
+                currentCarouselIntervals.forEach(clearInterval);
+                currentCarouselIntervals = [];
+                
+                // Deep cleanup: Stop any playing videos, reset time, and mute to ensure no audio bleed between clients
+                document.querySelectorAll('video').forEach(v => {
+                    v.pause();
+                    v.currentTime = 0;
+                    v.onended = null;
+                });
+            }, 300);
+        }
+
+        // Close modal on Esc key press
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const bModal = document.getElementById('brandModal');
+                const aModal = document.getElementById('adModal');
+                
+                if (bModal && !bModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+                if (aModal && !aModal.classList.contains('hidden')) {
+                    closeAdModal();
+                }
+            }
+        });
+
+        // --- PERFORMANCE ADS MODAL LOGIC ---
+        const adsData = {
+            meta: {
+                title: 'Meta Ads',
+                subtitle: 'Facebook & Instagram Ecosystem',
+                icon: 'fa-meta',
+                color: 'text-blue-500',
+                bgClass: 'bg-blue-500/10',
+                borderClass: 'border-blue-500/30',
+                highlightColor: 'text-blue-400',
+                spend: '₹500k+',
+                highlightLabel: 'Average Return (ROAS)',
+                highlightValue: '4.5x',
+                clients: 'Patanjali Wellness, Farm Aravalia, SRNCC, Osian Desert Safari Camp',
+                types: ['Conversion Campaigns', 'Lead Generation', 'Retargeting Funnels', 'Awareness & Reach'],
+                achievements: [
+                    'Achieved exceptional cost-efficiency in traffic campaigns, delivering over 45,000 link clicks for PWC at a record-low CPC of ₹0.39 and an 11.32% CTR.',
+                    'Scaled high-volume Lead Generation across multiple accounts, highlighted by SRNCC campaigns generating 1,530+ leads while strictly maintaining CPA under ₹50.',
+                    'Optimized WhatsApp & Messaging objective ads for Farm Aravalia, consistently securing high-intent client conversations at an average conversion cost of ₹45 to ₹56.',
+                    'Leveraged short-form video and Reel ad formats (e.g., Osian & PWC Promo) to drive engagement, yielding click-through rates up to 3.96% and reducing CPL to as low as ₹23.78.',
+                    'Successfully managed high-impression campaigns (over 2.1M impressions for SRNCC), generating 72,000+ total measured results while rigorously controlling overall CPM and CPC.'
+                ]
+            },
+            google: {
+                title: 'Google Ads',
+                subtitle: 'Search, Display, Performance Max & YouTube',
+                icon: 'fa-google',
+                color: 'text-red-500',
+                bgClass: 'bg-red-500/10',
+                borderClass: 'border-red-500/30',
+                highlightColor: 'text-red-400',
+                spend: '₹10k+',
+                highlightLabel: 'Cost Per Lead Drop',
+                highlightValue: '-25%',
+                clients: 'Patanjali Wellness, Farm Aravalia, SRNCC, Osian Desert Safari Camp',
+                types: ['Search Engine Marketing (SEM)', 'Performance Max (PMax)', 'YouTube TrueView', 'Google Display Network'],
+                achievements: [
+                    'Achieved a consistent 12% Click-Through Rate (CTR) on highly competitive Search campaigns.',
+                    'Dominated top-of-page impression share for crucial industry keywords without inflating CPC.',
+                    'Restructured poorly performing legacy accounts, resulting in an immediate 25% drop in Cost Per Lead.',
+                    'Integrated offline conversion tracking to prove actual closed revenue, not just surface-level clicks.'
+                ]
+            }
+        };
+
+        const adModal = document.getElementById('adModal');
+        const adModalContent = document.getElementById('adModalContent');
+
+        // Animation helper for counting numbers up smoothly
+        function animateValue(obj, start, end, duration, prefix = '', suffix = '', isFloat = false) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // Ease-out curve for smooth deceleration
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = start + easeProgress * (end - start);
+                
+                let displayVal = isFloat ? current.toFixed(1) : Math.floor(current);
+                obj.innerText = prefix + displayVal + suffix;
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerText = prefix + end + suffix;
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Extracts prefixes/suffixes and triggers the animation
+        function runCounterAnimation(el, finalStr) {
+            const match = finalStr.match(/^([^0-9]*)([0-9.]+)(.*)$/);
+            if (match) {
+                const prefix = match[1];
+                const endVal = parseFloat(match[2]);
+                const suffix = match[3];
+                const isFloat = finalStr.includes('.') && match[2].includes('.');
+                animateValue(el, 0, endVal, 1500, prefix, suffix, isFloat);
+            } else {
+                el.innerText = finalStr;
+            }
+        }
+
+        function openAdModal(platform) {
+            const data = adsData[platform];
+            const contentContainer = document.getElementById('adModalContent');
+            
+            // Coming Soon Overlay Logic
+            if (platform === 'google') {
+                document.getElementById('comingSoonOverlay').classList.remove('hidden');
+                contentContainer.classList.remove('overflow-y-auto');
+                contentContainer.classList.add('overflow-hidden');
+            } else {
+                document.getElementById('comingSoonOverlay').classList.add('hidden');
+                contentContainer.classList.add('overflow-y-auto');
+                contentContainer.classList.remove('overflow-hidden');
+            }
+            
+            // Populate Sidebar
+            const iconContainer = document.getElementById('adModalIconContainer');
+            iconContainer.className = `w-20 h-20 rounded-2xl flex items-center justify-center text-5xl mb-6 ${data.bgClass} ${data.borderClass} border`;
+            document.getElementById('adModalIcon').className = `fa-brands ${data.icon} ${data.color}`;
+            
+            document.getElementById('adModalTitle').innerText = data.title;
+            document.getElementById('adModalSubtitle').innerText = data.subtitle;
+            
+            // Apply Counting Animations to Stats
+            const spendEl = document.getElementById('adModalSpend');
+            runCounterAnimation(spendEl, data.spend);
+            
+            document.getElementById('adModalHighlightLabel').innerText = data.highlightLabel;
+            const highlightVal = document.getElementById('adModalHighlightValue');
+            highlightVal.className = `text-2xl font-bold ${data.highlightColor}`;
+            runCounterAnimation(highlightVal, data.highlightValue);
+
+            // Populate Content
+            document.getElementById('adModalClients').innerText = data.clients;
+
+            const typesContainer = document.getElementById('adModalTypes');
+            typesContainer.innerHTML = '';
+            data.types.forEach(type => {
+                const span = document.createElement('span');
+                span.className = 'px-4 py-2 bg-black border border-white/10 rounded-full text-xs text-gray-300 shadow-sm';
+                span.innerText = type;
+                typesContainer.appendChild(span);
+            });
+
+            const achievementsContainer = document.getElementById('adModalAchievements');
+            achievementsContainer.innerHTML = '';
+            data.achievements.forEach(ach => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start text-gray-300 text-sm leading-relaxed';
+                li.innerHTML = `<i class="fa-solid fa-bullseye ${data.color} mt-1 mr-3 text-lg"></i> <span>${ach}</span>`;
+                achievementsContainer.appendChild(li);
+            });
+
+            // Animate In
+            adModal.classList.remove('hidden');
+            setTimeout(() => {
+                adModalContent.classList.remove('scale-95', 'opacity-0');
+                adModalContent.classList.add('scale-100', 'opacity-100');
+                
+                // Show/Hide Meta Graph Dashboard securely after transition
+                if (platform === 'meta') {
+                    document.getElementById('metaAdsDashboard').classList.remove('hidden');
+                    renderMetaChart();
+                } else {
+                    document.getElementById('metaAdsDashboard').classList.add('hidden');
+                }
+            }, 10);
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeAdModal() {
+            adModalContent.classList.remove('scale-100', 'opacity-100');
+            adModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                adModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                if (metaChart) { metaChart.destroy(); metaChart = null; }
+            }, 300);
+        }
+
+        // --- META ADS HIGH PERFORMANCE CHART LOGIC ---
+        const metaCampaigns = [
+            { name: 'SRNCC / Leads', spent: 74857.32, results: 1531, cpm: 35.19, ctr: 0.66, cpc: 5.26, cpa: 48.89, type: 'Lead Gen' },
+            { name: 'Farm Aravalia C-LP', spent: 31327.51, results: 692, cpm: 168.39, ctr: 1.48, cpc: 11.33, cpa: 45.27, type: 'Messaging' },
+            { name: 'PWC Carousel', spent: 19018.62, results: 45960, cpm: 44.98, ctr: 11.32, cpc: 0.39, cpa: 0.41, type: 'Link Clicks' },
+            { name: 'Vedalife Ads', spent: 18592.12, results: 23069, cpm: 9.06, ctr: 1.20, cpc: 0.74, cpa: 0.80, type: 'Link Clicks' },
+            { name: 'Osian Reel', spent: 13415.38, results: 504, cpm: 46.98, ctr: 1.82, cpc: 2.57, cpa: 26.61, type: 'Lead Gen' },
+            { name: 'Aravalia Carousel', spent: 13000.04, results: 229, cpm: 171.59, ctr: 2.11, cpc: 8.11, cpa: 56.76, type: 'Messaging' },
+            { name: 'PWC Promo', spent: 11940.92, results: 502, cpm: 78.73, ctr: 3.96, cpc: 1.98, cpa: 23.78, type: 'Lead Gen' },
+            { name: 'Aravalia WA Reel', spent: 11012.81, results: 246, cpm: 104.02, ctr: 2.77, cpc: 3.74, cpa: 44.76, type: 'Messaging' },
+            { name: 'FA Reel LP', spent: 10850.13, results: 201, cpm: 107.60, ctr: 2.33, cpc: 4.61, cpa: 53.98, type: 'Messaging' }
+        ];
+
+        let metaChart = null;
+        let currentMetaMetric = 'spent_results';
+        let currentMetaFilter = 'All';
+
+        function renderMetaChart() {
+            const canvasElement = document.getElementById('metaPerformanceChart');
+            if (!canvasElement) return;
+            const ctx = canvasElement.getContext('2d');
+            
+            if (metaChart) { metaChart.destroy(); }
+
+            Chart.defaults.color = '#9ca3af';
+            Chart.defaults.font.family = "'Space Grotesk', sans-serif";
+
+            // Filter data
+            const filteredData = currentMetaFilter === 'All' ? metaCampaigns : metaCampaigns.filter(c => c.type === currentMetaFilter);
+            const labels = filteredData.map(c => c.name);
+
+            let datasets = [];
+            let options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 1500, easing: 'easeOutQuart' },
+                plugins: {
+                    legend: { display: true, labels: { color: '#ffffff', boxWidth: 12, usePointStyle: true } },
+                    tooltip: {
+                        backgroundColor: 'rgba(18, 18, 23, 0.95)',
+                        titleColor: '#FFD700',
+                        bodyColor: '#ffffff',
+                        borderColor: 'rgba(255,255,255,0.1)',
+                        borderWidth: 1,
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    x: { ticks: { maxRotation: 45, minRotation: 45 }, grid: { display: false } },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' } }
+                }
+            };
+
+            // Setup chart logic based on selected metric
+            if (currentMetaMetric === 'spent_results') {
+                datasets = [
+                    {
+                        label: 'Amount Spent (₹)',
+                        data: filteredData.map(c => c.spent),
+                        backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                        borderColor: '#3b82f6',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Results Generated',
+                        data: filteredData.map(c => c.results),
+                        type: 'line',
+                        backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                        borderColor: '#FFD700',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#FFD700',
+                        pointBorderColor: '#fff',
+                        pointRadius: 5,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        yAxisID: 'y1'
+                    }
+                ];
+                options.scales.y.title = { display: true, text: 'Spend (₹)', color: '#3b82f6' };
+                options.scales.y1 = {
+                    type: 'linear', display: true, position: 'right',
+                    ticks: { color: '#FFD700' }, grid: { display: false },
+                    title: { display: true, text: 'Results', color: '#FFD700' }
+                };
+                options.plugins.tooltip.callbacks = {
+                    label: function(ctx) {
+                        return ctx.datasetIndex === 0 
+                            ? `Spend: ₹${ctx.raw.toLocaleString('en-IN')}` 
+                            : `Results: ${ctx.raw.toLocaleString('en-IN')} (${filteredData[ctx.dataIndex].type})`;
+                    }
+                };
+            } else {
+                let metricKey, labelStr, colorStr, prefix = '', suffix = '';
+                if(currentMetaMetric === 'ctr') { metricKey = 'ctr'; labelStr = 'Click-Through Rate (%)'; colorStr = '#8A2BE2'; suffix = '%'; }
+                if(currentMetaMetric === 'cpc') { metricKey = 'cpc'; labelStr = 'Cost Per Click (₹)'; colorStr = '#ef4444'; prefix = '₹'; }
+                if(currentMetaMetric === 'cpm') { metricKey = 'cpm'; labelStr = 'Cost Per 1,000 Impressions (₹)'; colorStr = '#10b981'; prefix = '₹'; }
+                if(currentMetaMetric === 'cpa') { metricKey = 'cpa'; labelStr = 'Cost per Result (₹)'; colorStr = '#f97316'; prefix = '₹'; }
+
+                datasets = [{
+                    label: labelStr,
+                    data: filteredData.map(c => c[metricKey]),
+                    backgroundColor: `${colorStr}90`,
+                    borderColor: colorStr,
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    hoverBackgroundColor: colorStr
+                }];
+                options.plugins.tooltip.callbacks = {
+                    label: function(ctx) { return `${labelStr.split(' ')[0]}: ${prefix}${ctx.raw}${suffix}`; }
+                };
+            }
+
+            metaChart = new Chart(ctx, { type: 'bar', data: { labels, datasets }, options });
+        }
+
+        // Event Listeners for Meta Chart Toggles
+        document.querySelectorAll('.meta-metric-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.meta-metric-btn').forEach(b => {
+                    b.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                    b.classList.add('text-gray-400');
+                });
+                e.target.classList.remove('text-gray-400');
+                e.target.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+                currentMetaMetric = e.target.dataset.metric;
+                renderMetaChart();
+            });
+        });
+
+        document.querySelectorAll('.meta-filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.meta-filter-btn').forEach(b => {
+                    b.classList.remove('bg-white/20', 'text-white', 'shadow-md');
+                    b.classList.add('text-gray-400');
+                });
+                e.target.classList.remove('text-gray-400');
+                e.target.classList.add('bg-white/20', 'text-white', 'shadow-md');
+                currentMetaFilter = e.target.dataset.filter;
+                renderMetaChart();
+            });
+        });
+
+        function setupCarousel(containerId, items, type) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = '';
+            
+            if(!items || items.length === 0) {
+                container.innerHTML = '<div class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs">No Content Available</div>';
+                return;
+            }
+
+            items.forEach((itemSrc, index) => {
+                const slide = document.createElement('div');
+                slide.className = `showcase-item absolute inset-0 w-full h-full ${index === 0 ? 'active' : ''}`;
+                
+                if (type === 'reel') {
+                    // Removed the 'muted' attribute to allow audio to play automatically
+                    slide.innerHTML = `<video src="${itemSrc}" class="w-full h-full object-cover" playsinline preload="metadata"></video>`;
+                } else {
+                    // Added a smart fallback: if .webp fails, try .jpg just in case the files on your computer are actually JPEGs!
+                    slide.innerHTML = `<img src="${itemSrc}" class="w-full h-full object-cover" alt="Content" loading="lazy" onerror="if(!this.dataset.retried && this.src.includes('.webp')) { this.dataset.retried = true; this.src = this.src.replace('.webp', '.jpg'); }">`;
+                }
+                container.appendChild(slide);
+            });
+
+            // Logic
+            let currentIndex = 0;
+            let interval;
+            const slides = container.querySelectorAll('.showcase-item');
+
+            if (type === 'reel') {
+                // Video Logic: Hover plays current, on end plays next sequentially
+                const playCurrentVideo = () => {
+                    const video = slides[currentIndex].querySelector('video');
+                    if (video) {
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(error => {
+                                console.log("Auto-play prevented or source missing"); 
+                            });
+                        }
+                        
+                        video.onended = () => {
+                            // Hide finished video and reset its time
+                            slides[currentIndex].classList.remove('active');
+                            video.currentTime = 0;
+
+                            // Move to next video (loop back to 0 if at the end)
+                            currentIndex = (currentIndex + 1) % slides.length;
+                            slides[currentIndex].classList.add('active');
+                            
+                            // Play the newly active video
+                            playCurrentVideo();
+                        };
+                    }
+                };
+
+                container.addEventListener('mouseenter', () => {
+                    playCurrentVideo();
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    const activeVideo = slides[currentIndex].querySelector('video');
+                    if (activeVideo) {
+                        activeVideo.pause();
+                        activeVideo.currentTime = 0; 
+                        activeVideo.onended = null; // Clean up event to prevent unexpected jumps
+                    }
+                });
+
+            } else {
+                // Image Logic: Hover cycles every 3s
+                container.addEventListener('mouseenter', () => {
+                    interval = setInterval(() => {
+                        slides[currentIndex].classList.remove('active');
+                        currentIndex = (currentIndex + 1) % slides.length;
+                        slides[currentIndex].classList.add('active');
+                    }, 3000); 
+                    currentCarouselIntervals.push(interval);
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    clearInterval(interval);
+                });
+            }
+        }
+
+        // --- LAKSHAY PICS CAROUSEL (HEADER) ---
+        const lakshayCarousel = document.getElementById('lakshay-carousel');
+        const lakshayPics = Array.from({length: 7}, (_, i) => `Lakshay Pics/Pic.${i + 1}.webp`);
+
+        if (lakshayCarousel) {
+            lakshayPics.forEach((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Lakshay Bakshi - ${index + 1}`;
+                // Fallback to the original image if the specific Pic.X.webp isn't found
+                img.onerror = function() { 
+                    this.src = 'lakshay.bakshi.jpg'; 
+                    document.getElementById('carousel-loading').style.display = 'none';
+                }; 
+                img.onload = function() { document.getElementById('carousel-loading').style.display = 'none'; };
+                // Set CSS transition duration to 3000ms (3 seconds) for a smooth morph effect
+                img.className = `absolute inset-0 w-full h-full object-cover transition-opacity duration-[3000ms] ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
+                lakshayCarousel.appendChild(img);
+            });
+
+            let currentPic = 0;
+            setInterval(() => {
+                const imgs = lakshayCarousel.querySelectorAll('img');
+                if (imgs.length > 1) {
+                    imgs[currentPic].classList.remove('opacity-100', 'z-10');
+                    imgs[currentPic].classList.add('opacity-0', 'z-0');
+                    currentPic = (currentPic + 1) % imgs.length;
+                    imgs[currentPic].classList.remove('opacity-0', 'z-0');
+                    imgs[currentPic].classList.add('opacity-100', 'z-10');
+                }
+            }, 3000); // Crossfade every 3 seconds
+        }
+
+        // --- GEMINI AI LOGIC ---
+        async function generateHooks() {
+            const input = document.getElementById('aiInput').value;
+            if (!input) { alert("Please enter a niche!"); return; }
+            
+            const resultDiv = document.getElementById('aiResult');
+            const outputDiv = document.getElementById('aiOutput');
+            const loadingDiv = document.getElementById('aiLoading');
+            const btn = document.getElementById('aiBtn');
+            
+            btn.disabled = true; 
+            btn.classList.add('opacity-50'); 
+            loadingDiv.classList.remove('hidden'); 
+            resultDiv.classList.add('hidden');
+            
+            const apiKey = ""; 
+            const prompt = `Act as Lakshay Bakshi. Generate 3 viral Instagram Reel hooks for: "${input}". Format: Markdown.`;
+            
+            try {
+                if (!apiKey && window.location.protocol === "file:") {
+                    throw new Error("API Key Missing! To run this locally, you must paste your Gemini API Key into the 'apiKey' variable in the code.");
+                }
+
+                const modelName = apiKey ? "gemini-1.5-flash" : "gemini-2.5-flash-preview-09-2025";
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+
+                const response = await fetch(url, { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }) 
+                });
+
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => ({}));
+                    throw new Error(errData.error?.message || `HTTP Error ${response.status}`);
+                }
+
+                const data = await response.json();
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (text) {
+                    outputDiv.innerHTML = marked.parse(text);
+                } else {
+                    throw new Error("No content generated.");
+                }
+                resultDiv.classList.remove('hidden');
+            } catch (e) { 
+                outputDiv.innerHTML = `<div class="text-red-400 p-4 border border-red-500/30 rounded bg-red-900/10">
+                    <strong>Error:</strong> ${e.message}
+                </div>`; 
+                resultDiv.classList.remove('hidden'); 
+            } finally { 
+                loadingDiv.classList.add('hidden'); 
+                btn.disabled = false; 
+                btn.classList.remove('opacity-50'); 
+            }
+        }
+    </script>
+</body>
+</html>
